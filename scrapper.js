@@ -30,10 +30,11 @@ fs.readFile('webpage.html', function read(err, data) {
     }
     content =data;
 
-    // Invoke the next step here however you like
-    // console.log(data.toString());   // Put all of the code here (not the best solution)
 
     var promise = htmlToJson.parse(data.toString(), {
+      'title': function ($doc) {
+        return $doc.find('title').text();
+      },
       'text': function ($doc) {
         return $doc.find('a').text();
       }
@@ -42,6 +43,14 @@ fs.readFile('webpage.html', function read(err, data) {
     });
 
     promise.done(function (result) {
+
+      //delete file if exists
+      fs.unlink('webpage.txt', function(notExist) {
+          if (notExist) {
+              console.log("Deleting file if exists...");
+          }
+      });
+
       //Works as well
       fs.appendFile('webpage.txt', JSON.stringify(result), function(err) {
           if (err) throw err;

@@ -2,7 +2,9 @@ var request = require("request");
 var fs = require("fs");
 var htmlToJson = require("html-to-json");
 
-var array = ['https://medium.com/', 'https://reactjs.org/', 'https://strapi.io/', 'https://www.google.com/', 'https://leetcode.com/']
+var array = ['https://medium.com/','https://medium.com/', 'https://reactjs.org/', 'https://strapi.io/', 'https://www.google.com/', 'https://leetcode.com/'];
+let unique = [...new Set(array)];
+console.log(unique);
 
 function multipleRequest(uri){
 request({
@@ -14,7 +16,6 @@ request({
         if (err) throw err;
         console.log('The "data to append" was appended to file!');
     });
-
 });
 }
 
@@ -50,8 +51,8 @@ function scrapHtml(){
   });
 }
 
-for(var i=0;i<5;i++){
-  multipleRequest(array[i]);
-  console.log(array[i]);
+for(var i=0;i<unique.length;i++){
+  multipleRequest(unique[i]);
+  console.log(unique[i]);
 }
 scrapHtml();

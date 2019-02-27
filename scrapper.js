@@ -2,6 +2,7 @@ var request = require("request");
 var fs = require("fs");
 var htmlToJson = require("html-to-json");
 
+var array = ['https://medium.com/', 'https://reactjs.org/', 'https://strapi.io/', 'https://www.google.com/', 'https://leetcode.com/']
 
 function multipleRequest(uri){
 request({
@@ -49,8 +50,8 @@ function scrapHtml(){
   });
 }
 
-for(var i=2;i<7;i++){
-  multipleRequest(process.argv[i]);
-  console.log(process.argv[i]);
+for(var i=0;i<5;i++){
+  multipleRequest(array[i]);
+  console.log(array[i]);
 }
 scrapHtml();

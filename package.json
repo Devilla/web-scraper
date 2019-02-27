@@ -9,6 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node scrapper.js https://medium.com/ https://reactjs.org/ https://strapi.io/ https://www.google.com/ https://leetcode.com/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
